@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum HTML</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Praktikum HTML</h1>
+        <p><strong>Nama:</strong> Dodi Bayu Prasanto</p>
+        <p><strong>NIM:</strong> 2211102085</p>
+
+        <!-- Tombol Aksi -->
+        <button id="toggleAlign">Ubah Alignment</button>
+        <button id="toggleColor">Ubah Warna Background</button>
+
+        <h2>Contoh Elemen HTML</h2>
+        <p>Lorem Ipsum is simply dummy text...</p>
+
+        <h2>Daftar</h2>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+
+        <h2>Tabel</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <th>Kolom 1</th>
+                <th>Kolom 2</th>
+            </tr>
+            <tr>
+                <td>Data 1</td>
+                <td>Data 2</td>
+            </tr>
+        </table>
+
+        <h2>Formulir</h2>
+        <form>
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama">
+            <br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <br><br>
+            <input type="submit" value="Kirim">
+        </form>
+
+        <footer>
+            <p>&copy; Dodi Bayu Prasanto 2211102085</p>
+        </footer>
+    </div>
+
+    <!-- Script jQuery -->
+    <script>
+        $(document).ready(function () {
+            let alignStates = ['left', 'center', 'right'];
+            let currentAlignIndex = 0;
+            let colorToggle = false;
+
+            $('#toggleAlign').click(function () {
+                const align = alignStates[currentAlignIndex];
+                $('.container').css('text-align', align);
+
+                // Ubah margin tabel agar ikut rata
+                let marginStyle = '0 auto';
+                if (align === 'left') marginStyle = '0';
+                else if (align === 'right') marginStyle = '0 0 0 auto';
+
+                $('table').css('margin', marginStyle);
+
+                // Update index
+                currentAlignIndex = (currentAlignIndex + 1) % alignStates.length;
+            });
+
+            $('#toggleColor').click(function () {
+                colorToggle = !colorToggle;
+                $('.container').css('background-color', colorToggle ? '#d1e7dd' : 'white');
+            });
+        });
+    </script>
+</body>
+
+</html>
